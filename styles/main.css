@@ -233,3 +233,10 @@ footer{
   text-align: center;
   margin: 100px 0;
 }
+a{
+  color: #068fdf;
+  text-decoration: none;
+}
+a:hover{
+  color: #00a2ff;
+}

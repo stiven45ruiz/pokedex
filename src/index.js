@@ -14,6 +14,10 @@ const api = axios.create({
   },
 });
 
+
+
+
+///Creation of models
 const pokeimg = document.querySelector('#pokeimg');
 const pokedescription = document.querySelector('#desc');
 const pokeName = document.querySelector('#pokeName');
@@ -43,29 +47,46 @@ const createStats = (pokeStat) =>{
   })
 
 }
-
-let pokeid;
-let pokeImages;
-let pokeImagesID = 0; 
-//calls to api
-const getPokemon = async(id) =>{
-  const {data} = await api(`pokemon/${id}`);
-  console.log(data, "-> Info api");
-
+const createPokemonScreen = (data)=>{
   pokeid = data.id
   pokeImages = Object.values(data.sprites).filter(item => typeof item == 'string')
 
   pokeimg.src = data.sprites.front_default;
-  pokedescription.innerHTML = data.name;
   pokeName.innerHTML = data.name
-  const statPokemon = data.stats;
-  
-  createStats(statPokemon)
-  
 }
 
+let pokeid;
+let pokeImages;
+let pokeImagesID = 0; 
+
+
+
+
+
+//calls to api
+const getPokemon = async(id) =>{
+  const {data} = await api(`pokemon/${id}`);
+  // console.log(data, "-> Info api");
+
+  const statPokemon = data.stats;
+  createStats(statPokemon)
+  createPokemonScreen(data)
+  
+}
 getPokemon(1);
 
+const getPokemonsSpecies = async(id) =>{
+  const {data} = await api(`pokemon-species/${id}`);
+  
+  const PokemonDesc = Object.values(data.flavor_text_entries[1])[0];
+  // console.log(PokemonDesc);
+  pokedescription.innerHTML = PokemonDesc
+}
+getPokemonsSpecies(1)
+
+
+
+//Buttons accion
 const nextImg = ()=>{
   if(pokeImagesID === pokeImages.length - 1){
     pokeImagesID = 0;
@@ -89,8 +110,11 @@ const prevPokemon = ()=>{
     return null
   }else{
     getPokemon(pokeid - 1)
+    getPokemonsSpecies(pokeid - 1)
   }
 }
 const nextPokemon = ()=>{
   getPokemon(pokeid + 1)
+  getPokemonsSpecies(pokeid + 1)
+
 }

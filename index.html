@@ -12,7 +12,7 @@
 </head>
 <body>
   <header>
-    Mi pokedex
+    My pokedex
   </header>
 
   <main class="pokedex">
@@ -55,13 +55,18 @@
         <button 
           class="pokedex__button"
           onclick="prevPokemon()"
-          >Prev
+        >
+          <span class="material-symbols-outlined">
+            arrow_back_ios
+          </span>
         </button>
         <button 
           class="pokedex__button"
           onclick="nextPokemon()"
-          >
-          Next
+        >
+          <span class="material-symbols-outlined">
+            arrow_forward_ios
+          </span>  
         </button>
         </div>
       </div>
@@ -84,7 +89,7 @@
       </article>
     </section>
   </main>
-  <footer>Hecho con 💜 por @stive45ruiz</footer>
+  <footer>Made with 💜 by <a href="https://github.com/stiven45ruiz/pokedex">@stiven45ruiz</a></footer>
 
   
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
