@@ -1,3 +1,5 @@
+import './styles/main.css'
+
 const CONTENT_TYPE = 'application/json;charset=utf-8'
 const API_URL = 'https://pokeapi.co/api/v2/';
 const API_URL_TRENDING = 'trending/movie/day';

@@ -11,32 +11,26 @@ module.exports = {
     filename: "main.js"
   },
   resolve: {
-    extensions: [".js"]
+    extensions: [".js"],
+    alias:{
+      '@styles': path.resolve(__dirname, 'src/styles/'),
+    }
   },
   module: {
     rules: [
       {
-        test: /.m?js$/,
-        use: {
-          loader: "babel-loader"
-        },
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(css|styl|scss)$/i,
+        test: /\.css$/i,
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
-					"sass-loader",
-					"stylus-loader"
-        ]
+        ],
       }
     ]
   },
   plugins:[
     new HtmlWebpackPlugin({
       inject: true,
-      template: './public/index.html',
+      template: './index.html',
       filename: './index.html',
     }),
     new MiniCssExtractPlugin(),
